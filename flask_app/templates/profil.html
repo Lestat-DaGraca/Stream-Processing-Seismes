@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil - StreamProcessing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profil.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar glass">
+        <div class="nav-left">
+            <img src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo" class="logo">
+        </div>
+        <div class="nav-center">
+            <h1>Profil utilisateur</h1>
+        </div>
+        <div class="nav-right"> 
+            <ul>
+                <li><a href="{{ url_for('index') }}">Accueil</a></li>
+                {% if user %}
+                    <li><a href="{{ url_for('logout') }}">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Connexion</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">
+                {{ message }}
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <section class="profil-section">
+            <div class="profil-card glass">
+                <div class="profil-header">
+                    <img src="{{ url_for('static', filename='img/avatar.png') }}" alt="Avatar" class="profil-avatar">
+                    <h2>{{ user.username }}</h2>
+                    <p class="profil-email">{{ user.get_email() }}</p>
+                </div>
+
+                <div class="profil-info">
+                    <h3>Informations du compte</h3>
+                    <ul>
+                        <li><strong>Nom d'utilisateur :</strong> {{ user.username }}</li>
+                        <li><strong>Email :</strong> {{ user.get_email() }}</li>
+                        <li><strong>ID utilisateur :</strong> {{ user.id }}</li>
+                    </ul>
+                </div>
+
+                <div class="profil-actions">
+                    <a href="{{ url_for('edit_profil') }}" class="btn-primary">🖊️ Modifier le profil</a>
+                    <a href="{{ url_for('index') }}" class="btn-primary">🏠 Retour à l'accueil</a>
+                    <a href="{{ url_for('logout') }}" class="btn-danger">🚪 Se déconnecter</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass">
+        <p>© 2025 - Projet M2 StreamProcessing | <a href="#">Contact</a></p>
+    </footer>
+</body>
+</html>

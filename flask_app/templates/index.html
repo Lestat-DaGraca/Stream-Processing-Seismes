@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<title>StreamProcessing - Dashboard Séismes</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar glass">
+			<div class="nav-left">
+				<img src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo" class="logo" />
+			</div>
+			<div class="nav-center">
+				<h1>Tableau de bord des séismes en temps réel</h1>
+			</div>
+			<div class="nav-right">
+				<ul>
+					<li><a href="#">Accueil</a></li>
+					<li><a href="/graph">Analyses</a></li>
+					<li><a href="/kmeans">KMeans</a></li>
+					{% if user and user.is_admin %}
+					<li><a href="{{ url_for('admin_dashboard') }}">Admin</a></li>
+					{% endif %} {% if user %}
+					<li><a href="{{ url_for('profil') }}">Profil</a></li>
+					<li><a href="{{ url_for('logout') }}">Déconnexion</a></li>
+					{% else %}
+					<li><a href="{{ url_for('login') }}">Connexion</a></li>
+					<li><a href="{{ url_for('register') }}">Inscription</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Contenu principal -->
+		<main class="content">
+			<section class="filters glass">
+				<div class="filter-group">
+					<h2>Filtres</h2>
+					<div class="filters-grid">
+						<div class="filter-item">
+							<label for="date">Date</label>
+							<input type="date" id="date" />
+						</div>
+						<div class="filter-item">
+							<label for="magnitude">Magnitude minimale</label>
+							<input type="number" id="magnitude" min="0" max="10" step="0.1" value="4" />
+						</div>
+						<div class="filter-item">
+							<label for="region">Région</label>
+							<select id="region">
+								<option value="all">Toutes</option>
+								<option value="asie">Asie</option>
+								<option value="europe">Europe</option>
+								<option value="amerique">Amérique</option>
+							</select>
+						</div>
+						<button id="apply-filters" class="btn-primary">Appliquer</button>
+					</div>
+					{% if user and user.is_admin %}
+                        <div class="filter-item">
+                            <label>Simulation Kafka</label>
+                            <button id="btn-inject-csv" class="btn-primary btn-inject">
+                                Injecter 500 Séismes
+                            </button>
+                        </div>
+                    {% endif %}
+				</div>
+
+				<div class="alert-zone glass">
+					<h2>Zone d’alerte</h2>
+					<p id="alert-message">Aucune alerte en cours.</p>
+				</div>
+			</section>
+
+			<section class="data-section">
+				<div class="map-card glass">
+					<div id="map"></div>
+				</div>
+				<div class="list-card glass">
+					<h2>Derniers séismes enregistrés</h2>
+					<div id="earthquake-list">
+						<!-- Liste dynamique -->
+					</div>
+				</div>
+			</section>
+
+			<section class="stats glass">
+				<h2>📊 Statistiques globales</h2>
+				<div class="stats-cards">
+					<div class="stat-card">
+						<span class="stat-title">Nombre de séismes</span>
+						<span id="stat-count">0</span>
+					</div>
+					<div class="stat-card">
+						<span class="stat-title">Magnitude moyenne</span>
+						<span id="stat-avg">0</span>
+					</div>
+					<div class="stat-card">
+						<span class="stat-title">Séisme le plus fort</span>
+						<span id="stat-max">0</span>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="glass">
+			<p>© 2025 - Projet M2 StreamProcessing | <a href="#">Contact</a></p>
+		</footer>
+
+		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+		<script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+		<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+	</body>
+</html>

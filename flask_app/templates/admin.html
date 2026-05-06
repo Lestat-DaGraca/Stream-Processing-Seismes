@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des utilisateurs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    
+    <div class="container glass">  
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">
+                {{ message }}
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <h1>Tableau de bord administrateur</h1>
+        <a href="{{ url_for('index') }}" class="back-btn">⬅ Retour à l'accueil</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom d'utilisateur</th>
+                    <th>Email</th>
+                    <th>Admin</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <form method="POST">
+                        <td>{{ user.id }}</td>
+                        <td>
+                            <input type="text" name="username" value="{{ user.username }}" required>
+                        </td>
+                        <td>
+                            <input type="email" name="email" value="{{ user.get_email() }}" required>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="is_admin" {% if user.is_admin %}checked{% endif %}>
+                        </td>
+                        <td class="actions">
+                            <input type="hidden" name="user_id" value="{{ user.id }}">
+                            <button type="submit" name="action" value="update" class="update-btn">💾</button>
+                            {% if not user.is_admin %}
+                            <button type="submit" name="action" value="delete" class="delete-btn">🗑️</button>
+                            {% endif %}
+                        </td>
+                    </form>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

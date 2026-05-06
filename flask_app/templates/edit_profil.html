@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier mon profil - StreamProcessing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profil.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar glass">
+        <div class="nav-left">
+            <img src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo" class="logo">
+        </div>
+        <div class="nav-center">
+            <h1>Modifier mon profil</h1>
+        </div>
+        <div class="nav-right">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Accueil</a></li>
+                <li><a href="{{ url_for('profil') }}">Profil</a></li>
+                <li><a href="{{ url_for('logout') }}">Déconnexion</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="content">
+        <section class="profil-section">
+            <div class="profil-card glass">
+                <h2>🖊️ Modifier mes informations</h2>
+                <form method="POST" action="{{ url_for('edit_profil') }}" class="profil-form">
+                    <div class="form-group">
+                        <label for="username">Nom d'utilisateur</label>
+                        <input type="text" id="username" name="username" value="{{ user.username }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Adresse email</label>
+                        <input type="email" id="email" name="email" value="{{ user.get_email() }}" required>
+                    </div>
+                    <div class="checkbox-label">
+                        <label for="alerts_enabled">Souhaitez-vous recevoir des mails ?</label>
+                        <input type="checkbox" id="alerts_enabled" name="alerts_enabled" {% if user.is_alerts_enabled() %}checked{% endif %}>
+                     </div>
+
+                    <div class="profil-actions">
+                        <button type="submit" class="btn-primary">💾 Enregistrer</button>
+                        <a href="{{ url_for('profil') }}" class="btn-danger">❌ Annuler</a>
+                    </div>
+                    
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass">
+        <p>© 2025 - Projet M2 StreamProcessing | <a href="#">Contact</a></p>
+    </footer>
+</body>
+</html>

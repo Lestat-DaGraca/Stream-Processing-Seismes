@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>K-Means Clustering</title>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/kmeans.css') }}" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar glass">
+			<div class="nav-left">
+				<img src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo" class="logo" />
+			</div>
+			<div class="nav-center">
+				<h1>K-Means Clustering</h1>
+			</div>
+			<div class="nav-right">
+				<ul>
+					<li><a href="/">Accueil</a></li>
+					<li><a href="/graph">Analyses</a></li>
+					<li><a href="/kmeans">KMeans</a></li>
+					{% if user and user.is_admin %}
+					<li><a href="{{ url_for('admin_dashboard') }}">Admin</a></li>
+					{% endif %} {% if user %}
+					<li><a href="{{ url_for('profil') }}">Profil</a></li>
+					<li><a href="{{ url_for('logout') }}">Déconnexion</a></li>
+					{% else %}
+					<li><a href="{{ url_for('login') }}">Connexion</a></li>
+					<li><a href="{{ url_for('register') }}">Inscription</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Contenu principal -->
+		<main class="content">
+			<!-- Contrôles -->
+			<div class="controls-section glass">
+				<div class="control-group">
+					<label>Nombre de clusters (K):</label>
+					<input type="range" id="k-slider" min="2" max="10" value="3" step="1" />
+					<span id="k-value">5</span>
+				</div>
+
+				<button id="apply-clustering" class="btn-primary">🔄 Appliquer le clustering</button>
+
+				<!-- NOUVEAU : Toggle incrémental -->
+				<div class="control-group toggle-group">
+					<label class="toggle-label">
+						<input type="checkbox" id="incremental-toggle" />
+						<span class="toggle-slider"></span>
+						<span class="toggle-text">Mode incrémental</span>
+					</label>
+				</div>
+
+				<button id="reset-btn" class="btn-secondary">↺ Réinitialiser</button>
+
+				<div class="stats">
+					<span>Séismes: <strong id="total-count">0</strong></span>
+					<span>Clusters: <strong id="cluster-count">0</strong></span>
+				</div>
+			</div>
+
+			<div class="kmeans-container">
+				<!-- Carte -->
+				<div class="map-card glass">
+					<h2>🗺️ Carte interactive</h2>
+					<div id="map"></div>
+				</div>
+
+				<!-- Liste des clusters -->
+				<div class="map-card glass">
+					<div class="earthquake-list">
+						<div class="list-header">
+							<h2>📊 Clusters</h2>
+						</div>
+						<div id="clusters-container">
+							<p class="info-message">ℹ️ Appliquez le clustering pour voir les résultats</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<!-- Footer -->
+		<footer class="glass">
+			<p>© 2025 - Projet M2 StreamProcessing</p>
+		</footer>
+
+		<!-- Scripts -->
+		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+		<script src="{{ url_for('static', filename='js/kmeans.js') }}"></script>
+	</body>
+</html>

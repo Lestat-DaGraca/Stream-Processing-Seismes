@@ -1,0 +1,289 @@
+/* --- Base --- */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #e6f2ff, #f8fcff);
+    color: #222;
+}
+
+.glass {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border-radius: 16px;
+}
+
+/* --- Navbar --- */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    height: 60px;
+}
+
+.nav-center h1 {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #00537a;
+}
+
+.nav-right ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.nav-right a {
+    color: #00537a;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.nav-right a:hover {
+    color: #0098d9;
+}
+
+/* --- Main content --- */
+.content {
+    padding: 40px 80px;
+}
+
+/* --- Filtres et zone d’alerte --- */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding: 25px;
+    flex-wrap: wrap;
+}
+
+.filter-group, .alert-zone {
+    flex: 1;
+    min-width: 320px;
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.filter-item label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.filter-item input, .filter-item select {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.9em;
+}
+
+.btn-primary {
+    background-color: #0098d9;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0078b3;
+}
+
+/* --- Zone d’alerte --- */
+.alert-zone {
+    text-align: center;
+    background: rgba(255, 235, 230, 0.6);
+    border-left: 6px solid #ff5c5c;
+    transition: all 0.3s ease;
+}
+
+.alert-zone.active {
+    background: rgba(255, 100, 100, 0.1);
+    border-left-color: #e63946;
+}
+
+.alert-zone.safe {
+    background: rgba(220, 255, 220, 0.6);
+    border-left-color: #4caf50;
+}
+
+/* --- Data Section --- */
+.data-section {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.map-card, .list-card {
+    flex: 1;
+    padding: 15px;
+}
+
+#map {
+    width: 100%;
+    height: 450px;
+    border-radius: 12px;
+}
+
+/* --- Liste des séismes --- */
+#earthquake-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.earthquake-card {
+    background-color: #f1f6fa;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.1s ease;
+}
+
+.earthquake-card:hover {
+    transform: scale(1.02);
+}
+
+.eq-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.eq-location {
+    font-weight: 600;
+}
+
+.eq-magnitude {
+    font-size: 0.9em;
+    color: #00537a;
+}
+
+.eq-date {
+    font-size: 0.8em;
+    color: #555;
+}
+
+.eq-badge {
+    padding: 6px 10px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+}
+
+.eq-badge.low {
+    background-color: #4caf50;
+}
+.eq-badge.medium {
+    background-color: #ff9800;
+}
+.eq-badge.high {
+    background-color: #e63946;
+}
+.list-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* --- Stats --- */
+.stats {
+    padding: 25px;
+    text-align: center;
+}
+.stats-cards {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    flex: 1;
+    min-width: 150px;
+    background: #f3f7fa;
+    border-radius: 12px;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.1s ease;
+}
+
+.stat-card:hover {
+    transform: scale(1.02);
+}
+
+.stat-title {
+    display: block;
+    font-weight: 600;
+    color: #00537a;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.stat-card span:last-child {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #0098d9;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 0.9em;
+}
+
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.flash {
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Couleurs selon la catégorie */
+.flash.success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.flash.info    { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+.flash.danger  { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    .data-section {
+        flex-direction: column;
+    }
+    .filters {
+        flex-direction: column;
+    }
+    .content {
+        padding: 20px;
+    }
+}
+

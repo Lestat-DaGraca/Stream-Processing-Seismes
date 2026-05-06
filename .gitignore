@@ -1,0 +1,54 @@
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pyc
+
+# Environments
+venv/
+ENV/
+.venv/
+
+# ========================
+# IDE / Editor
+# ========================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ========================
+# Secrets & config sensibles
+# ========================
+.env
+*.key
+*.pem
+*.p12
+secrets/
+
+# ========================
+# OS
+# ========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ========================
+# Logs & données temporaires
+# ========================
+*.log
+logs/
+tmp/
+temp/
+
+# ========================
+# Distribution / build
+# ========================
+dist/
+build/
+*.egg-info/
+.eggs/

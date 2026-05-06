@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Analyse Temporelle - Séismes</title>
+
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/analyse.css') }}" />
+	</head>
+
+	<body>
+		<nav class="navbar glass">
+			<div class="nav-left">
+				<img src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo" class="logo" />
+			</div>
+			<div class="nav-center">
+				<h1>Analyse des Séismes (10 dernières minutes)</h1>
+			</div>
+			<div class="nav-right">
+				<ul>
+					<li><a href="/">Accueil</a></li>
+					<li><a href="/graph">Analyses</a></li>
+					<li><a href="/kmeans">KMeans</a></li>
+					{% if user and user.is_admin %}
+					<li><a href="{{ url_for('admin_dashboard') }}">Admin</a></li>
+					{% endif %} {% if user %}
+					<li><a href="{{ url_for('profil') }}">Profil</a></li>
+					<li><a href="{{ url_for('logout') }}">Déconnexion</a></li>
+					{% else %}
+					<li><a href="{{ url_for('login') }}">Connexion</a></li>
+					<li><a href="{{ url_for('register') }}">Inscription</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</nav>
+
+		<main class="content">
+			<section class="glass chart-section">
+				<div class="chart-header">
+					<h2>Nombre de séismes par région (10 dernières minutes)</h2>
+					<p>Actualisation toutes les 10 secondes.</p>
+				</div>
+
+				<div class="chart-container">
+					<canvas id="quakeCountChart"></canvas>
+				</div>
+			</section>
+
+			<section class="topk-section">
+				<div class="glass topk-card">
+					<div id="topk-global">
+						<div class="loading-spinner">
+							<p>Chargement des données...</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="glass topk-card topk-regions-card">
+					<div id="topk-regions">
+						<div class="loading-spinner">
+							<p>Chargement des données...</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="glass">
+			<p>© 2025 - Projet M2 StreamProcessing</p>
+		</footer>
+
+		<script src="{{ url_for('static', filename='js/analyse.js') }}"></script>
+	</body>
+</html>

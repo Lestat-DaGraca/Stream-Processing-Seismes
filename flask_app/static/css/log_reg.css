@@ -1,0 +1,121 @@
+/* Container central */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background: linear-gradient(135deg, #e5f0f5, #f7f9fc);
+    padding: 20px;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px 40px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    max-width: 400px;
+    width: 100%;
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #00537a;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #00537a;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-weight: 600;
+    color: #00537a;
+
+}
+
+.input-group input:focus {
+    border-color: #0098d9;
+    box-shadow: 0 0 5px rgba(0,152,217,0.4);
+    outline: none;
+}
+
+.input-group select option {
+    padding: 10px;
+    background-color: #fff;
+    font-weight: 600;
+    color: #00537a;
+}
+
+.input-group select option:checked {
+    background-color: #0098d9;
+    color: #fff;
+}
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    margin: 0;
+    white-space: nowrap; 
+}
+
+
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: #0098d9;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #007bb5;
+    transform: scale(1.03);
+}
+
+.error {
+    color: #ff4d4f;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login-container a {
+    color: #00537a;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}

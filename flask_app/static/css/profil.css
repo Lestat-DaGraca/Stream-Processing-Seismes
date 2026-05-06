@@ -1,0 +1,183 @@
+/* --- Page Profil --- */
+
+.profil-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 160px);
+    padding: 40px;
+}
+
+.profil-card {
+    max-width: 450px;
+    width: 100%;
+    padding: 35px 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.6s ease;
+}
+
+.profil-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.profil-avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 4px solid #0098d9;
+    margin-bottom: 15px;
+    background-color: #f0faff;
+}
+
+.profil-header h2 {
+    color: #00537a;
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.profil-email {
+    color: #555;
+    font-size: 0.95em;
+    margin-top: 5px;
+}
+
+.profil-info {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.profil-info h3 {
+    color: #0078b3;
+    margin-bottom: 10px;
+}
+
+.profil-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profil-info li {
+    margin: 8px 0;
+    font-size: 0.95em;
+    color: #333;
+}
+
+.profil-actions {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.btn-primary, .btn-danger {
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: #0098d9;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #007bb5;
+}
+
+.btn-danger {
+    background-color: #e63946;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c62828;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+    .profil-card {
+        padding: 25px 20px;
+    }
+
+    .profil-header h2 {
+        font-size: 1.4em;
+    }
+
+    .profil-avatar {
+        width: 90px;
+        height: 90px;
+    }
+
+    .profil-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.profil-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #00537a;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    background: #f8fcff;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0098d9;
+    box-shadow: 0 0 5px rgba(0,152,217,0.3);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #00537a;
+}
+
+.checkbox-label input {
+    margin: 0;
+}

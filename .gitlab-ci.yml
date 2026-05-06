@@ -1,0 +1,20 @@
+stages:
+  - deploy
+
+deploy-dev:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - echo "Déploiement simple sur la VM..."
+    - apk add --no-cache openssh-client git
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    # Ajouter la VM aux known_hosts
+    - ssh-keyscan -H $SERVER >> ~/.ssh/known_hosts
+    # Cloner ou mettre à jour le projet
+    - ssh -o StrictHostKeyChecking=no $USER@$SERVER "mkdir -p ~/streamprocessingg2 && cd ~/streamprocessingg2 && if [ ! -d .git ]; then git clone git@gitlabvigan.iem:m2projettutore2025-2026-groupe2/streamprocessingg2.git .; else git pull; fi"
+    - ssh $USER@$SERVER "cd ~ && ./restartappli.sh"
+
+
+  when: manual
